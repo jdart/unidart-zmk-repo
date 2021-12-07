@@ -1,0 +1,8 @@
+file_format: "1"
+id: unidart
+name: UNIDART
+type: shield
+url: https://github.com/jdart/unidart-zmk-repo
+requires: [pro_micro]
+features:
+  - keys

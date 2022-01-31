@@ -167,22 +167,22 @@
                         c_T {
                                 timeout-ms = <50>;
                                 key-positions = <2 3>;
-                                bindings = <&kp T>;
+                                bindings = <&kp B>;
                         };
                         c_Y {
                                 timeout-ms = <50>;
                                 key-positions = <6 7>;
-                                bindings = <&kp Y>;
+                                bindings = <&kp J>;
                         };
                         c_B {
                                 timeout-ms = <50>;
                                 key-positions = <22 23>;
-                                bindings = <&kp B>;
+                                bindings = <&kp V>;
                         };
                         c_N {
                                 timeout-ms = <50>;
                                 key-positions = <26 27>;
-                                bindings = <&kp N>;
+                                bindings = <&kp K>;
                         };
                 };
         };

@@ -13,69 +13,16 @@
 
 / {
         behaviors {
+                skq: sticky_key_quick_release {
+                        compatible = "zmk,behavior-sticky-key";
+                        label = "STICKY_KEY_QUICK_RELEASE";
+                        #binding-cells = <1>;
+                        bindings = <&kp>;
+                        release-after-ms = <1000>;
+                        quick-release;
+                };
                 combos {
                         compatible = "zmk,combos";
-                        // modifiers
-                        c_lctrl {
-                                timeout-ms = <50>;
-                                key-positions = <12 13>;
-                                bindings = <&kp LCTRL>;
-                        };
-                        c_rctrl {
-                                timeout-ms = <50>;
-                                key-positions = <16 17>;
-                                bindings = <&kp LCTRL>;
-                        };
-                        c_lmgui {
-                                timeout-ms = <50>;
-                                key-positions = <11 12>;
-                                bindings = <&kp LGUI>;
-                        };
-                        c_lmsft {
-                                timeout-ms = <50>;
-                                key-positions = <11 13>;
-                                bindings = <&kp LSFT>;
-                        };
-                        c_lmalt {
-                                timeout-ms = <50>;
-                                key-positions = <10 11>;
-                                bindings = <&kp LALT>;
-                        };
-                        c_lmaltsft {
-                                timeout-ms = <50>;
-                                key-positions = <10 11 13>;
-                                bindings = <&kp LA(LSHFT)>;
-                        };
-                        c_lmguisft {
-                                timeout-ms = <50>;
-                                key-positions = <11 12 13>;
-                                bindings = <&kp LS(LGUI)>;
-                        };
-                        c_rmgui {
-                                timeout-ms = <50>;
-                                key-positions = <17 18>;
-                                bindings = <&kp LGUI>;
-                        };
-                        c_rmalt {
-                                timeout-ms = <50>;
-                                key-positions = <18 19>;
-                                bindings = <&kp LALT>;
-                        };
-                        c_rmaltsft {
-                                timeout-ms = <50>;
-                                key-positions = <16 18 19>;
-                                bindings = <&kp LA(LSHFT)>;
-                        };
-                        c_rmsft {
-                                timeout-ms = <50>;
-                                key-positions = <16 18>;
-                                bindings = <&kp LSFT>;
-                        };
-                        c_rmguisft {
-                                timeout-ms = <50>;
-                                key-positions = <16 17 18>;
-                                bindings = <&kp LS(LGUI)>;
-                        };
                         // symbols
                         c_LBRC {
                                 timeout-ms = <50>;
@@ -144,11 +91,6 @@
                                 key-positions = <27 28>;
                                 bindings = <&kp ESCAPE>;
                         };
-                        c_esc2 {
-                                timeout-ms = <50>;
-                                key-positions = <21 22>;
-                                bindings = <&kp ESCAPE>;
-                        };
                         c_CLR {
                                 timeout-ms = <50>;
                                 key-positions = <1 2 4>;
@@ -194,20 +136,12 @@
 
         keymap {
                 compatible = "zmk,keymap";
-//                 default_layer {
-//                         bindings = <
-//     &kp Q       &kp W        &kp E          &kp R        &kp T          &kp Y      &kp U         &kp I           &kp O       &kp P
-//     &kp A       &kp S        &kp D          &kp F        &kp G          &kp H      &kp J         &kp K           &kp L       &kp SEMI
-//     &kp Z       &kp X        &kp C          &kp V        &kp B          &kp N      &kp M         &kp COMMA       &kp DOT     &kp FSLH
-//                                             &kp BKSP     &lt 1 TAB      &lt 1 RET  &kp SPACE
-//                         >;
-//                 };
                 default_layer {
                         bindings = <
-    &kp Q       &kp W        &kp F          &kp P        &kp B          &kp J      &kp L         &kp U           &kp Y       &kp SEMI
-    &kp A       &kp R        &kp S          &kp T        &kp G          &kp M      &kp N         &kp E           &kp I       &kp O
-    &kp Z       &kp X        &kp C          &kp D        &kp V          &kp K      &kp H         &kp COMMA       &kp DOT     &kp FSLH
-                                            &kp BKSP     &lt 1 TAB      &lt 1 RET  &kp SPACE
+      &kp Q     &kp W    &kp F     &kp P        &kp B         &kp J      &kp L          &kp U        &kp Y      &kp SEMI
+      &kp A     &kp R    &kp S     &kp T        &kp G         &kp M      &kp N          &kp E        &kp I      &kp O
+      &kp Z     &kp X    &kp C     &kp D        &kp V         &kp K      &kp H          &kp COMMA    &kp DOT    &kp FSLH
+                                   &lt 2 BKSP   &lt 1 TAB     &lt 1 RET  &lt 3 SPACE
                         >;
                 };
 
@@ -219,33 +153,49 @@
                                          &kp CARET   &kp DLLR           &kp GT     &kp MINUS
                         >;
                 };
+
+                modsl {
+                        bindings = <
+     &kp LS(Q)   &kp LS(W)    &kp LS(F)    &kp LS(P)  &kp LS(B)     &kp LS(J)    &kp LS(L)          &kp LS(U)        &kp LS(Y)      &kp LS(SEMI)
+     &skq LALT   &skq LGUI    &skq LSFT    &skq LCTL  &kp LS(G)     &kp LS(M)    &kp LS(N)          &kp LS(E)        &kp LS(I)      &kp LS(O)
+     &kp LS(Z)   &kp LS(X)    &kp LS(C)    &kp LS(D)  &kp LS(V)     &kp LS(K)    &kp LS(H)          &kp LS(COMMA)    &kp LS(DOT)    &kp LS(FSLH)
+                                           &trans     &trans        &trans       &trans
+                        >;
+                };
+
+                modsr {
+                        bindings = <
+    &kp LS(Q)     &kp LS(W)    &kp LS(F)     &kp LS(P)        &kp LS(B)      &kp LS(J)     &kp LS(L)    &kp LS(U)      &kp LS(Y)      &kp LS(SEMI)
+    &kp LS(A)     &kp LS(R)    &kp LS(S)     &kp LS(T)        &kp LS(G)      &kp LS(M)     &skq RCTL    &skq RSFT      &skq RGUI      &skq RALT
+    &kp LS(Z)     &kp LS(X)    &kp LS(C)     &kp LS(D)        &kp LS(V)      &kp LS(K)     &kp LS(H)    &kp LS(COMMA)  &kp LS(DOT)    &kp LS(FSLH)
+                                             &trans           &trans         &trans        &trans
+                        >;
+                };
         };
 };
 
 /**
-
 Base Layer
- Q | W | E | R | T      Y | U | I | O | P
- A | S | D | F | G      H | J | K | L | ;
- Z | X | C | V | B      N | M | , | . | /
-  BKSP | &lt 1 TAB      &lt 1 RET | SPACE
+ Q | W | E | R | T      Y | U | I     | O   | P
+ A | S | D | F | G      H | J | K     | L   | SEMI
+ Z | X | C | V | B      N | M | COMMA | DOT | FSLH
+    &lt 1 BKSP | TAB  RET | &lt 1 SPACE
 
 Layer 1
- DEL | 7 | 8 | 9 | %     ~ | ! | ' | " | @
-   + | 4 | 5 | 6 | *     l | d | u | r | =
-   0 | 1 | 2 | 3 | #     ` | & | | | _ | \
-               ^ | $     > | -
+ DEL | 7   | 8   | 9 | %     ~ | ! | ' | " | @
+   + | 4   | 5   | 6 | *     l | d | u | r | =
+   0 | 1   | 2   | 3 | #     ` | & | | | _ | \
+                   ^ | $     > | -
 
 Vertical Combos
    x | AG< | AG> | ASU | x     x | ] | } | ) | x
    x | G[  | G]  | ASD | x     x | [ | { | ( | x
 
 Horizontal Combos
-   x   | x   | T   | x        x | Y   | x   | x
+   x   | Q   | T   | x        x | Y   | P   | x
    ALT | GUI | CTL | x        x | CTL | GUI | ALT
-   x   | ESC | B   | x        x | N   | ESC | x
+   x   | x   | B   | x        x | N   | ESC | x
 
 Shift
  Home row ring and index finger
-
 */
